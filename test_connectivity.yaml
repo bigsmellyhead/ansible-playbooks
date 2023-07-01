@@ -1,6 +1,6 @@
 ---
 - name: Test Connectivity to Virtual Router
-  hosts: 192.168.58.254
+  hosts: CSR1kv1
   gather_facts: false
 
   tasks:
