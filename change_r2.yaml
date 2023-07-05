@@ -10,7 +10,7 @@
         commands:
           - configure terminal
           - interface GigabitEthernet2
-          - ip address 192.168.61.5 255.255.255.0
+          - ip address 192.168.57.101 255.255.255.0
           - no shutdown
           - exit
 
@@ -18,7 +18,7 @@
       ios_command:
         commands:
           - configure terminal
-          - hostname Cisco-Router2
+          - hostname Cisco-Router1
           - exit
 
     - name: Save configuration
