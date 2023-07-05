@@ -2,10 +2,6 @@
 - name: Configure HTTPS with Self-Signed Certificate
   hosts: webservers
   become: yes
-  vars_prompt:
-    - name: common_name
-      prompt: "(your webserver IP address)"
-      private: no
 
   tasks:
     - name: Install Apache2
