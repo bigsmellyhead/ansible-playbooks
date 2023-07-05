@@ -1,0 +1,52 @@
+---
+- name: Configure HTTPS with Self-Signed Certificate
+  hosts: webservers
+  become: yes
+  vars_prompt:
+    - name: common_name
+      prompt: "(your webserver IP address)"
+      private: no
+
+  tasks:
+    - name: Install Apache2
+      apt:
+        name: apache2
+        update_cache: yes
+        state: latest
+
+    - name: Enable mod rewrite
+      apache2_module: name=rewrite state=present
+      notify: 
+        - Restart Apache2
+
+    - name: Enable SSL module
+      apache2_module: 
+        name: ssl
+        state: present
+
+    - name: Generate self-signed certificate
+      command: openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/ssl/private/apache-selfsigned.key -out /etc/ssl/certs/apache-selfsigned.crt
+      args:
+        creates: /etc/ssl/private/apache-selfsigned.key
+
+    - name: Enable SSL virtual host
+      command: a2ensite default-ssl.conf
+      args:
+        warn: no
+      notify:
+        - Restart Apache2
+
+    - name: Find process ID using port 443
+      command: lsof -t -i :443
+      register: process_id
+      ignore_errors: true
+
+    - name: Kill process using port 443
+      shell: "kill -9 {{ process_id.stdout }}"
+      when: process_id.stdout is defined and "'apache2' not in ansible_user" | bool
+
+  handlers:
+    - name: Restart Apache2
+      service:
+        name: apache2
+        state: restarted
