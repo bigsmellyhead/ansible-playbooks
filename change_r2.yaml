@@ -18,7 +18,7 @@
       ios_command:
         commands:
           - configure terminal
-          - hostname Cisco-Router1
+          - hostname CSRouter1
           - exit
 
     - name: Save configuration
