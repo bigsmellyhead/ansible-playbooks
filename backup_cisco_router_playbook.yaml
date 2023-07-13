@@ -1,6 +1,6 @@
 ---
 - name: AUTOMATIC BACKUP OF RUNNING-CONFIG
-  hosts: CSR1kv1
+  hosts: CSR1kv
   gather_facts: false
   connection: local
  
