@@ -1,18 +1,18 @@
 ---
 - name: Change Router Configuration
-  hosts: CSR1kv1
+  hosts: CSR1kv
   gather_facts: false
   connection: network_cli
 
   tasks:
-    - name: Change IP address
-      ios_command:
-        commands:
-          - configure terminal
-          - interface GigabitEthernet2
-          - ip address 192.168.57.169 255.255.255.0
-          - no shutdown
-          - exit
+    # - name: Change IP address
+    #   ios_command:
+    #     commands:
+    #       - configure terminal
+    #       - interface GigabitEthernet2
+    #       - ip address 192.168.57.169 255.255.255.0
+    #       - no shutdown
+    #       - exit
 
     - name: Change hostname
       ios_command:
