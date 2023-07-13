@@ -1,6 +1,6 @@
 ---
 - name: Test Connectivity to Virtual Router
-  hosts: CSR1kv1
+  hosts: CSR1kv
   gather_facts: false
 
   tasks:
