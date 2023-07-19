@@ -27,8 +27,6 @@
 
     - name: Enable SSL virtual host
       command: a2ensite default-ssl.conf
-      args:
-        warn: no
       notify:
         - Restart Apache2
 
