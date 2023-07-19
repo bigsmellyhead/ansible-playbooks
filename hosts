@@ -4,4 +4,5 @@ CSR1kv ansible_user=cisco ansible_password=cisco123! ansible_host=192.168.56.105
 # Here lies Second Router Details
 CSR1kv1 ansible_user=cisco ansible_password=cisco123! ansible_host=192.168.58.106 ansible_connection=network_cli ansible_network_os=ios
 
-webservers 192.168.56.2 ansible_ssh_user=devasc ansible_ssh_pass=Cisco123!
+[webservers]
+192.168.56.2 ansible_ssh_user=devasc ansible_ssh_pass=Cisco123!
